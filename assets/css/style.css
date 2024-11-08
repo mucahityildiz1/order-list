@@ -1,0 +1,35 @@
+body {
+  background-color: blueviolet;
+}
+.container {
+  background-color: crimson;
+  display: flex;
+  justify-content: center;
+  gap: 64px;
+  border: 1px solid black;
+  border-radius: 30px;
+}
+.urun-listesi ul {
+  border: 3px solid black;
+  border-radius: 20px;
+
+}
+.urunBtn {
+  background-color: gray;
+  padding: 24px;
+  display: flex;
+  border: none;
+  border-radius: 12px;
+  margin: 12px;
+}
+.siparis-listesi ul {
+  display: flex;
+  gap: 32px;
+  flex-direction: column;
+  align-items: center;
+}
+.siparis-listesi ul li {
+  
+  font-size: 32px;
+  color: #fff;
+}
