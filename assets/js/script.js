@@ -1,49 +1,28 @@
-const urunler = ["elma", "armut", "kavun", "portakal", "karpuz", "uzum"];
+const urunler = document.querySelectorAll('.urunler li');
+const siparisListesi = document.querySelector('#siparislerinListesi');
 
-const siparisler = [];
+const siparis = [];
 
-
-function init() {
-  for (const urun of urunler) {
-    urunlerinListesi.innerHTML +=
-      `
-      <li class="urun">
-        <button class="urunBtn">${urun}</button>
-      </li>
-      `;
-  }
-  bindBtns();
-}
-function bindBtns() {
-  const urunBtns = document.querySelectorAll(".urunBtn");
-  for (const btn of urunBtns) {
-    btn.addEventListener("click", sepeteEkle);
+function siparisleriOlustur() {
+  siparisListesi.innerHTML = "";
+  for (const urun of siparis) {
+    siparisListesi.innerHTML += `<li>${urun.name} x${urun.quantity}</li>`;
   }
 }
 
+function urunEkle() {
+  const siparisName = this.innerText;
+  const urun = siparis.find(x => x.name === siparisName);
 
-function sepeteEkle() {
-  const meyveAdi = this.innerText;
-  const varsaMeyveninIndexi = siparisler.findIndex(siparis => siparis.meyveAdi === meyveAdi);
-
-  if (varsaMeyveninIndexi > -1) {
-    siparisler[varsaMeyveninIndexi].adet += 1;
+  if (urun) {
+    urun.quantity++;
   } else {
-    siparisler.push({ meyveAdi, adet: 1 });
+    siparis.push({
+      name: siparisName,
+      quantity: 1,
+    });
   }
-  
-  siparisleriYazdir();
+  siparisleriOlustur();
 }
 
-function siparisleriYazdir() {
-  siparislerinListesi.innerHTML = "";  
-
-  for (const siparis of siparisler) {
-    siparislerinListesi.innerHTML +=
-      `
-      <li>${siparis.meyveAdi} x ${siparis.adet}</li>
-      `;
-  }
-}
-
-init();
+urunler.forEach(urun => urun.addEventListener('click', urunEkle));
